@@ -34,7 +34,7 @@ class _NorthWindDisplayTileState extends State<NorthWindDisplayTile> {
                   ),
                 ),
               )
-            : Container(),
+            : null,
       );
 
   Widget _infoTile() => ListTile(
