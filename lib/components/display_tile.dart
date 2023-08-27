@@ -21,18 +21,20 @@ class _NorthWindDisplayTileState extends State<NorthWindDisplayTile> {
             : Colors.white,
         title: widget.titleWidget,
         subtitle: widget.subtitleWidget,
-        trailing: IconButton(
-          onPressed: () => setState(() {
-            _showInfo = !_showInfo;
-          }),
-          icon: Transform.flip(
-            flipY: (_showInfo),
-            child: Icon(
-              Icons.arrow_drop_down_circle_outlined,
-              color: (_showInfo) ? Colors.white : Colors.grey,
-            ),
-          ),
-        ),
+        trailing: (widget.innerWidget != null)
+            ? IconButton(
+                onPressed: () => setState(() {
+                  _showInfo = !_showInfo;
+                }),
+                icon: Transform.flip(
+                  flipY: (_showInfo),
+                  child: Icon(
+                    Icons.arrow_drop_down_circle_outlined,
+                    color: (_showInfo) ? Colors.white : Colors.grey,
+                  ),
+                ),
+              )
+            : Container(),
       );
 
   Widget _infoTile() => ListTile(
