@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NorthWindSearchBar extends StatelessWidget {
-  const NorthWindSearchBar(
-      {super.key, this.onChanged, this.onTap, this.controller});
+  const NorthWindSearchBar({super.key, this.onChanged, this.onTap});
   final Function(String)? onChanged;
   final Function()? onTap;
-  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return SearchAnchor(builder: (BuildContext context, SearchController _) {
       return SearchBar(
-        controller: controller,
         padding: const MaterialStatePropertyAll<EdgeInsets>(
           EdgeInsets.symmetric(horizontal: 16.0),
         ),
