@@ -1,10 +1,8 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:northwind/models/employee_model.dart';
 import 'package:northwind/views/single_order_view.dart';
 
+import '../components/string_to_photo.dart';
 import './shared/view_class.dart';
 
 class EmplpyeesView extends StatelessWidget {
@@ -14,19 +12,10 @@ class EmplpyeesView extends StatelessWidget {
     return ViewFromModel<Employee>(
       fromJson: Employee.fromJson,
       tileTitleWidget: (Employee employee) {
-        Uint8List? photoBytes;
-        if (employee.photo != null) {
-          String photoStr = employee.photo!;
-          photoBytes = Uint8List.fromList(base64.decode(photoStr));
-        }
         return Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (employee.photo != null && photoBytes != null)
-              Image.memory(
-                photoBytes,
-                width: 200,
-              ),
+            if (employee.photo != null) photoFromString(employee.photo!, 200),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
