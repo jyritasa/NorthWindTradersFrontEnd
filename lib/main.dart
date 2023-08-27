@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:northwind/views/products_view.dart';
+import 'package:northwind/views/home_view.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -18,7 +18,7 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
         useMaterial3: true,
       ),
-      home: const ProductsView(),
+      home: const HomeView(),
     );
   }
 }
