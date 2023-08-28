@@ -3,6 +3,7 @@ import 'package:northwind/conf/fonts_and_padding.dart';
 import 'package:northwind/views/customers_view.dart';
 import 'package:northwind/views/employees_view.dart';
 import 'package:northwind/views/orders_view.dart';
+import 'package:northwind/views/post_orders_view.dart';
 import 'package:northwind/views/products_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -31,7 +32,7 @@ class HomeView extends StatelessWidget {
                   ),
                   Text(
                     title,
-                    style: TextStyle(fontSize: 32),
+                    style: const TextStyle(fontSize: 32),
                   ),
                 ],
               )),
@@ -49,19 +50,41 @@ class HomeView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("./assets/img/wind-rose.png"),
-            Text(
+            const Text(
               "NORTHWIND TRADERS",
               style: TextStyle(fontSize: 24, color: Colors.lightBlue),
             ),
-            Padding(padding: EdgeInsets.only(bottom: verticalPadding)),
+            const Padding(padding: EdgeInsets.only(bottom: verticalPadding)),
             menuButton(
-                context, const CustomersView(), Icons.people, "Customers"),
-            menuButton(context, const EmplpyeesView(),
-                Icons.person_pin_outlined, "Employees"),
+              context,
+              const CustomersView(),
+              Icons.people,
+              "Customers",
+            ),
             menuButton(
-                context, const ProductsView(), Icons.fastfood, "Products"),
+              context,
+              const EmplpyeesView(),
+              Icons.person_pin_outlined,
+              "Employees",
+            ),
             menuButton(
-                context, const OrdersView(), Icons.folder_open, "Orders"),
+              context,
+              const ProductsView(),
+              Icons.fastfood,
+              "Products",
+            ),
+            menuButton(
+              context,
+              const OrdersView(),
+              Icons.folder_open,
+              "Orders",
+            ),
+            menuButton(
+              context,
+              const PostOrderView(),
+              Icons.edit_document,
+              "Create Order",
+            ),
           ],
         ),
       ),
