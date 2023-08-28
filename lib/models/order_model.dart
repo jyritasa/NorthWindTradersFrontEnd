@@ -77,26 +77,22 @@ class Order extends Model {
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['orderId'] = orderId;
-    data['customerId'] = customerId;
-    data['employeeId'] = employeeId;
-    data['orderDate'] = orderDate;
-    data['requiredDate'] = requiredDate;
-    data['shippedDate'] = shippedDate;
-    data['shipVia'] = shipVia;
-    data['freight'] = freight;
-    data['shipName'] = shipName;
-    data['shipAddress'] = shipAddress;
-    data['shipCity'] = shipCity;
-    data['shipRegion'] = shipRegion;
-    data['shipPostalCode'] = shipPostalCode;
-    data['shipCountry'] = shipCountry;
-    if (customer != null) {
-      data['customer'] = customer!.toJson();
-    }
-    if (employee != null) {
-      data['employee'] = employee!.toJson();
-    }
+    if (orderId != null) data['orderId'] = orderId;
+    if (customerId != null) data['customerId'] = customerId;
+    if (employeeId != null) data['employeeId'] = employeeId;
+    if (orderDate != null) data['orderDate'] = orderDate;
+    if (requiredDate != null) data['requiredDate'] = requiredDate;
+    if (shippedDate != null) data['shippedDate'] = shippedDate;
+    if (shipVia != null) data['shipVia'] = shipVia;
+    if (freight != null) data['freight'] = freight;
+    if (shipName != null) data['shipName'] = shipName;
+    if (shipAddress != null) data['shipAddress'] = shipAddress;
+    if (shipCity != null) data['shipCity'] = shipCity;
+    if (shipRegion != null) data['shipRegion'] = shipRegion;
+    if (shipPostalCode != null) data['shipPostalCode'] = shipPostalCode;
+    if (shipCountry != null) data['shipCountry'] = shipCountry;
+    if (customer != null) data['customer'] = customer!.toJson();
+    if (employee != null) data['employee'] = employee!.toJson();
     if (orderDetails != null) {
       data['orderDetails'] = orderDetails!.map((v) => v.toJson()).toList();
     }

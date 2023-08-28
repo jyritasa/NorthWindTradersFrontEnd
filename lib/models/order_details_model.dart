@@ -6,7 +6,6 @@ class OrderDetails {
   double? unitPrice;
   int? quantity;
   double? discount;
-  String? order;
   Product? product;
 
   OrderDetails(
@@ -15,7 +14,6 @@ class OrderDetails {
       this.unitPrice,
       this.quantity,
       this.discount,
-      this.order,
       this.product});
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
@@ -24,19 +22,17 @@ class OrderDetails {
     unitPrice = json['unitPrice'];
     quantity = json['quantity'];
     discount = json['discount'];
-    order = json['order'];
     product =
         json['product'] != null ? Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['orderId'] = orderId;
-    data['productId'] = productId;
-    data['unitPrice'] = unitPrice;
-    data['quantity'] = quantity;
-    data['discount'] = discount;
-    data['order'] = order;
+    if (orderId != null) data['orderId'] = orderId;
+    if (productId != null) data['productId'] = productId;
+    if (unitPrice != null) data['unitPrice'] = unitPrice;
+    if (quantity != null) data['quantity'] = quantity;
+    if (discount != null) data['discount'] = discount;
     if (product != null) {
       data['product'] = product!.toJson();
     }
