@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:northwind/models/shared/model_class.dart';
@@ -41,7 +43,7 @@ class Controller<T extends Model> {
     return [];
   }
 
-  Future<T?> getByID(int id) async {
+  Future<T?> getByID(dynamic id) async {
     try {
       //for example: www.example.com/models/1
       Response response = await _dio.get('$_url/${_modelName}s/$id');
@@ -51,6 +53,35 @@ class Controller<T extends Model> {
     } on DioException catch (e) {
       if (e.response != null) {
         logger.e("${e.response?.statusCode}:\n${e.response?.statusMessage}");
+        rethrow;
+      }
+    } catch (e, s) {
+      logger.e(e.toString());
+      logger.e(s.toString());
+      rethrow;
+    }
+    return null;
+  }
+
+  Future<T?> post(T model) async {
+    try {
+      logger.i("Sending: ${json.encode(model.toJson())}");
+      Response response =
+          //for example: www.example.com/models/
+          await _dio.post('$_url/${_modelName}s',
+              data: model.toJson(),
+              options: Options(headers: {
+                'Content-Type': 'application/json',
+              }));
+      if (response.statusCode == 201) {
+        logger.i("Success!");
+        return fromJson(response.data);
+      }
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final dynamic data = e.response!.data;
+        logger.e("${e.response?.statusCode}:\n${e.response?.statusMessage}");
+        logger.e("Response Data: $data");
         rethrow;
       }
     } catch (e, s) {
