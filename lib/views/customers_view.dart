@@ -5,7 +5,9 @@ import '../models/customer_model.dart';
 import 'single_order_view.dart';
 
 class CustomersView extends StatelessWidget {
-  const CustomersView({super.key});
+  const CustomersView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,8 @@ class CustomersView extends StatelessWidget {
       tileTitleWidget: (customer) => Text(customer.contactName ?? ""),
       tileSubTitleWidget: (customer) =>
           Text("${customer.companyName} ${customer.contactTitle}"),
-      tileInnerWidget: (customer) => Column(
+      tileInnerWidget: (customer, models, displayedModels, updateModels) =>
+          Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -25,21 +28,24 @@ class CustomersView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text("Orders:"),
-              ...customer.orders!
-                  .map(
-                    (order) => TextButton(
-                      child: Text(order.orderId.toString()),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SingleOrderView(order: order),
-                          ),
-                        );
-                      },
-                    ),
-                  )
-                  .toList(),
+              Wrap(
+                children: customer.orders!
+                    .map(
+                      (order) => TextButton(
+                        child: Text(order.orderId.toString()),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SingleOrderView(order: order),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                    .toList(),
+              ),
             ],
           ),
         ],

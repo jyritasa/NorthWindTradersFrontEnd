@@ -26,7 +26,8 @@ class EmplpyeesView extends StatelessWidget {
           ],
         );
       },
-      tileInnerWidget: (Employee employee) => Column(
+      tileInnerWidget:
+          (Employee employee, models, displayedModels, updateModels) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text("Orders:"),
