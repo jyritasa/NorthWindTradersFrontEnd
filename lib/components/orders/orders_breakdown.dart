@@ -2,15 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:northwind/conf/fonts_and_padding.dart';
 import 'package:northwind/models/order_model.dart';
 
-String getTotalOrderPrice(Order order) {
-  double price = 0;
-  for (var od in order.orderDetails!) {
-    price += (od.unitPrice! * od.quantity!) -
-        (od.unitPrice! * od.quantity! * (od.discount ?? 0));
-  }
-  price += order.freight ?? 0;
-  return "Total: \$${price.toStringAsFixed(2)}";
-}
+import 'orders_discounted_price.dart';
 
 Widget orderBreakDownWidget(Order order) {
   DateTime? orderDate = DateTime.tryParse(order.orderDate ?? "");
@@ -43,7 +35,7 @@ Widget orderBreakDownWidget(Order order) {
                         style: bigStyle,
                       ),
                       Text(
-                        "\$${((od.unitPrice! * od.quantity!) - (od.unitPrice! * od.quantity! * (od.discount ?? 0))).toStringAsFixed(2)}",
+                        "\$${discountedPrice(od.unitPrice ?? 0, od.quantity ?? 1, od.discount ?? 0).toStringAsFixed(2)}",
                         style: bigStyle,
                       ),
                     ],
@@ -93,7 +85,8 @@ Widget orderBreakDownWidget(Order order) {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                getTotalOrderPrice(order),
+                getTotalOrderPrice(order.orderDetails ?? [], order.freight ?? 0)
+                    .toStringAsFixed(2),
                 style: bigStyle,
               ),
             ],
