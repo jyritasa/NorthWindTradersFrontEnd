@@ -80,7 +80,7 @@ class Controller<T extends Model> {
   ///For example: Customers has customerId and companyName fields.
   Future<List<T>> getMinimal() async {
     try {
-      //for example: www.example.com/models/
+      //for example: www.example.com/models/modelminimal
       Response response =
           await _dio.get('$_url/${_modelName}s/${_modelName}minimal');
       if (response.statusCode == 200) {
