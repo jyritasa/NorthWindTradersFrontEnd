@@ -64,7 +64,7 @@ class _ViewFromModelState<T extends Model> extends State<ViewFromModel<T>> {
                 () {
                   setState(() {});
                 },
-              ); // Pass null as second parameter
+              );
             }()
           : null,
     );
