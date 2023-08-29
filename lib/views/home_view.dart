@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:northwind/conf/fonts_and_padding.dart';
+import 'package:northwind/conf/styles.dart';
 import 'package:northwind/views/customers_view.dart';
 import 'package:northwind/views/employees_view.dart';
 import 'package:northwind/views/orders_view.dart';

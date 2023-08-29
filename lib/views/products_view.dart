@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:northwind/components/string_to_photo.dart';
-import 'package:northwind/conf/fonts_and_padding.dart';
+import 'package:northwind/conf/styles.dart';
 import 'package:northwind/models/product_model.dart';
 import 'package:northwind/views/shared/view_class.dart';
 import 'package:northwind/views/single_product_view.dart';

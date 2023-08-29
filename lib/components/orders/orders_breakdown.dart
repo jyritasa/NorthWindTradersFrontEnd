@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:northwind/conf/fonts_and_padding.dart';
+import 'package:northwind/conf/styles.dart';
 import 'package:northwind/models/order_model.dart';
 
 import 'orders_discounted_price.dart';

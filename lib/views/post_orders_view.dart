@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:northwind/components/activity_indicator.dart';
 import 'package:northwind/components/header.dart';
-import 'package:northwind/conf/fonts_and_padding.dart';
+import 'package:northwind/conf/styles.dart';
 import 'package:northwind/conf/logger.dart';
 import 'package:northwind/controllers/controller_class.dart';
 import 'package:northwind/models/customer_model.dart';

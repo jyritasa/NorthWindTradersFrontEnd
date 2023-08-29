@@ -3,7 +3,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:northwind/components/orders/orders_breakdown.dart';
-import 'package:northwind/conf/fonts_and_padding.dart';
+import 'package:northwind/conf/styles.dart';
 import 'package:northwind/conf/logger.dart';
 import 'package:northwind/models/order_model.dart';
 import 'package:northwind/views/shared/view_class.dart';
