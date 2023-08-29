@@ -112,38 +112,37 @@ class OrdersView extends StatelessWidget {
         ],
       ),
       searchFilter: (orders, text) {
-        var newList = orders.where((order) {
+        var newList = orders.where((o) {
+          var customer = o.customer;
+          var value = text.toLowerCase();
+
           DateTime? shippedDate;
-          DateTime? orderDate = DateTime.tryParse(order.orderDate ?? "");
+          DateTime? orderDate = DateTime.tryParse(o.orderDate ?? "");
           String orderDateString =
               "${orderDate?.day}.${orderDate?.month}.${orderDate?.year}";
           String? shippedDateString;
-          if (order.shippedDate != null) {
-            shippedDate = DateTime.tryParse(order.shippedDate ?? "");
+
+          if (o.shippedDate != null) {
+            shippedDate = DateTime.tryParse(o.shippedDate ?? "");
             shippedDateString =
                 "${shippedDate?.day}.${shippedDate?.month}.${shippedDate?.year}";
           }
+
           bool shippedDateTest() {
             if (shippedDate == null) return false;
             if (shippedDateString == null) return false;
-            if (shippedDateString.toLowerCase().contains(text.toLowerCase())) {
+            if (shippedDateString.toLowerCase().contains(value)) {
               return true;
             }
             return false;
           }
 
-          return (order.orderId!.toString().contains(text.toLowerCase()) ||
-              order.customer!.companyName!
-                  .toLowerCase()
-                  .contains(text.toLowerCase()) ||
-              order.customer!.contactName!
-                  .toLowerCase()
-                  .contains(text.toLowerCase()) ||
-              order.customer!.country!
-                  .toLowerCase()
-                  .contains(text.toLowerCase()) ||
-              order.shipCountry!.toLowerCase().contains(text.toLowerCase()) ||
-              orderDateString.toLowerCase().contains(text.toLowerCase()) ||
+          return (o.orderId!.toString().contains(value) ||
+              customer!.companyName!.toLowerCase().contains(value) ||
+              customer.contactName!.toLowerCase().contains(value) ||
+              customer.country!.toLowerCase().contains(value) ||
+              o.shipCountry!.toLowerCase().contains(value) ||
+              orderDateString.toLowerCase().contains(value) ||
               shippedDateTest());
         }).toList();
         return newList;

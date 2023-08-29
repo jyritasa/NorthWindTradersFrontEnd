@@ -51,21 +51,14 @@ class CustomersView extends StatelessWidget {
         ],
       ),
       searchFilter: (customers, text) {
+        var value = text.toLowerCase();
         var newList = customers
             .where(
-              (customer) => (customer.contactName!
-                      .toLowerCase()
-                      .contains(text.toLowerCase()) ||
-                  customer.companyName!
-                      .toLowerCase()
-                      .contains(text.toLowerCase()) ||
-                  customer.contactTitle!
-                      .toLowerCase()
-                      .contains(text.toLowerCase()) ||
-                  customer.country!
-                      .toLowerCase()
-                      .contains(text.toLowerCase()) ||
-                  customer.city!.toLowerCase().contains(text.toLowerCase())),
+              (c) => (c.contactName!.toLowerCase().contains(value) ||
+                  c.companyName!.toLowerCase().contains(value) ||
+                  c.contactTitle!.toLowerCase().contains(value) ||
+                  c.country!.toLowerCase().contains(value) ||
+                  c.city!.toLowerCase().contains(value)),
             )
             .toList();
         return newList;
