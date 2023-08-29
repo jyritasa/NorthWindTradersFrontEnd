@@ -5,8 +5,8 @@ import 'package:northwind/views/single_order_view.dart';
 import '../components/string_to_photo.dart';
 import './shared/view_class.dart';
 
-class EmplpyeesView extends StatelessWidget {
-  const EmplpyeesView({super.key});
+class EmployeesView extends StatelessWidget {
+  const EmployeesView({super.key});
   @override
   Widget build(BuildContext context) {
     return ViewFromModel<Employee>(

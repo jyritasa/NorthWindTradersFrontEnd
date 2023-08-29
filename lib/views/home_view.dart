@@ -62,7 +62,7 @@ class HomeView extends StatelessWidget {
             ),
             menuButton(
               context,
-              const EmplpyeesView(),
+              const EmployeesView(),
               Icons.person_pin_outlined,
               "Employees",
             ),
