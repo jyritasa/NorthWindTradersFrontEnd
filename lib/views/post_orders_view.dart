@@ -11,6 +11,8 @@ import 'package:northwind/models/order_model.dart';
 import 'package:northwind/models/order_details_model.dart';
 import 'package:northwind/models/product_model.dart';
 
+import '../components/orders/orders_discounted_price.dart';
+
 class PostOrderView extends StatefulWidget {
   const PostOrderView({super.key});
 
@@ -55,14 +57,19 @@ class _PostOrderViewState extends State<PostOrderView> {
   final _formKey = GlobalKey<FormState>();
 
   //For FutureBuilder to work it requires something to be returned. Future<void> wont work.
-  Future<List> _getAllModels() async {
-    _customers = await _customerController.getMinimal();
-    if (kDebugMode) logger.d("Got all Customers");
-    _employees = await _employeeController.getMinimal();
-    if (kDebugMode) logger.d("Got all Employees");
-    _products = await _productController.getMinimal();
-    if (kDebugMode) logger.d("Got all Products");
-    return _products;
+  Future<bool> _getAllModels() async {
+    try {
+      _customers = await _customerController.getMinimal();
+      if (kDebugMode) logger.d("Got all Customers");
+      _employees = await _employeeController.getMinimal();
+      if (kDebugMode) logger.d("Got all Employees");
+      _products = await _productController.getMinimal();
+      if (kDebugMode) logger.d("Got all Products");
+      return true;
+    } catch (e) {
+      if (kDebugMode) logger.e(e);
+      return false;
+    }
   }
 
   Future<Order?> _postOrder() async {
@@ -102,7 +109,6 @@ class _PostOrderViewState extends State<PostOrderView> {
     _shipPostalCodeController.dispose();
     _shipCountryController.dispose();
     _freightController.dispose();
-
     super.dispose();
   }
 
@@ -328,7 +334,7 @@ class _PostOrderViewState extends State<PostOrderView> {
                     ],
                   ),
                   Text(
-                      "\$${((details.value.unitPrice! * details.value.quantity!) + (details.value.unitPrice! * details.value.discount!)).toStringAsFixed(2)}",
+                      "\$${discountedPrice(details.value.unitPrice ?? 0, details.value.quantity ?? 1, details.value.discount ?? 0).toStringAsFixed(2)}",
                       style: bigStyle),
                 ],
               ),
@@ -374,22 +380,11 @@ class _PostOrderViewState extends State<PostOrderView> {
         ),
       );
 
-  double _getOrderTotal() {
-    if (_orderDetails.isEmpty) return 0;
-    double total = 0;
-    for (OrderDetails order in _orderDetails) {
-      total += (order.unitPrice! * order.quantity!) -
-          (order.unitPrice! * order.quantity! * (order.discount ?? 0));
-    }
-    total += _freight ?? 0;
-    return total;
-  }
-
   Widget _totalCostRow() => Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            "Total: \$${_getOrderTotal().toStringAsFixed(2)}",
+            "Total: \$${getTotalOrderPrice(_orderDetails, _freight ?? 0).toStringAsFixed(2)}",
             style: bigStyle.copyWith(fontWeight: FontWeight.bold),
           ),
         ],
@@ -428,6 +423,18 @@ class _PostOrderViewState extends State<PostOrderView> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                         content: Text('Please enter Address Informtion')),
+                  );
+                  return;
+                }
+                if (_orderDetails.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Your order is Empty')),
+                  );
+                  return;
+                }
+                if (_freight == null || _freight == 0) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Please Enter Freight')),
                   );
                   return;
                 }
@@ -508,6 +515,7 @@ class _PostOrderViewState extends State<PostOrderView> {
                   if (snapshot.hasData) {
                     return _snapshotHasDataWidget();
                   } else if (snapshot.hasError) {
+                    //! TODO: Proper Error Handling
                     return Text(snapshot.error.toString());
                   } else {
                     return const NorthWindActivityIndicator();
