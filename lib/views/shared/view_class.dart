@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:northwind/components/activity_indicator.dart';
 import 'package:northwind/components/search_bar.dart';
