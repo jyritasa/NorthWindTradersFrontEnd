@@ -35,14 +35,12 @@ class Controller<T extends Model> {
         );
       }
     } on DioException catch (e) {
-      if (e.response != null) {
-        if (kDebugMode) {
-          final dynamic data = e.response!.data;
-          logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
-          logger.e("Response Data: $data");
-        }
-        rethrow;
+      if (e.response != null && kDebugMode) {
+        final dynamic data = e.response!.data;
+        logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
+        logger.e("Response Data: $data");
       }
+      rethrow;
     } catch (e, s) {
       if (kDebugMode) {
         logger.e(e.toString());
@@ -61,14 +59,12 @@ class Controller<T extends Model> {
         return fromJson(response.data);
       }
     } on DioException catch (e) {
-      if (e.response != null) {
-        if (kDebugMode) {
-          final dynamic data = e.response!.data;
-          logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
-          logger.e("Response Data: $data");
-        }
-        rethrow;
+      if (e.response != null && kDebugMode) {
+        final dynamic data = e.response!.data;
+        logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
+        logger.e("Response Data: $data");
       }
+      rethrow;
     } catch (e, s) {
       if (kDebugMode) {
         logger.e(e.toString());
@@ -86,7 +82,7 @@ class Controller<T extends Model> {
     try {
       //for example: www.example.com/models/
       Response response =
-          await _dio.get('$_url/${_modelName}s/${_modelName}info');
+          await _dio.get('$_url/${_modelName}s/${_modelName}minimal');
       if (response.statusCode == 200) {
         return List<T>.from(
           response.data.map(
@@ -95,14 +91,12 @@ class Controller<T extends Model> {
         );
       }
     } on DioException catch (e) {
-      if (e.response != null) {
-        if (kDebugMode) {
-          final dynamic data = e.response!.data;
-          logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
-          logger.e("Response Data: $data");
-        }
-        rethrow;
+      if (e.response != null && kDebugMode) {
+        final dynamic data = e.response!.data;
+        logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
+        logger.e("Response Data: $data");
       }
+      rethrow;
     } catch (e, s) {
       if (kDebugMode) {
         logger.e(e.toString());
@@ -128,14 +122,12 @@ class Controller<T extends Model> {
         return fromJson(response.data);
       }
     } on DioException catch (e) {
-      if (e.response != null) {
-        if (kDebugMode) {
-          final dynamic data = e.response!.data;
-          logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
-          logger.e("Response Data: $data");
-        }
-        rethrow;
+      if (e.response != null && kDebugMode) {
+        final dynamic data = e.response!.data;
+        logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
+        logger.e("Response Data: $data");
       }
+      rethrow;
     } catch (e, s) {
       if (kDebugMode) {
         logger.e(e.toString());
@@ -159,14 +151,12 @@ class Controller<T extends Model> {
         return fromJson(response.data);
       }
     } on DioException catch (e) {
-      if (e.response != null) {
-        if (kDebugMode) {
-          final dynamic data = e.response!.data;
-          logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
-          logger.e("Response Data: $data");
-        }
-        rethrow;
+      if (e.response != null && kDebugMode) {
+        final dynamic data = e.response!.data;
+        logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
+        logger.e("Response Data: $data");
       }
+      rethrow;
     } catch (e, s) {
       if (kDebugMode) {
         logger.e(e.toString());
@@ -185,14 +175,12 @@ class Controller<T extends Model> {
         return true;
       }
     } on DioException catch (e) {
-      if (e.response != null) {
-        if (kDebugMode) {
-          final dynamic data = e.response!.data;
-          logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
-          logger.e("Response Data: $data");
-        }
-        rethrow;
+      if (e.response != null && kDebugMode) {
+        final dynamic data = e.response!.data;
+        logger.e("${e.response?.statusCode}: ${e.response?.statusMessage}");
+        logger.e("Response Data: $data");
       }
+      rethrow;
     } catch (e, s) {
       if (kDebugMode) {
         logger.e(e.toString());
