@@ -40,8 +40,8 @@ class EmplpyeesView extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                SingleOrderView(order: order)),
+                          builder: (context) => SingleOrderView(order: order),
+                        ),
                       );
                     },
                   ),
