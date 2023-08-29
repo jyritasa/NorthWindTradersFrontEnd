@@ -6,6 +6,8 @@ import 'package:northwind/views/orders_view.dart';
 import 'package:northwind/views/post_orders_view.dart';
 import 'package:northwind/views/products_view.dart';
 
+import '../components/northwind_logo.dart';
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
@@ -17,25 +19,26 @@ class HomeView extends StatelessWidget {
         child: SizedBox(
           width: 300,
           child: ElevatedButton(
-              onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => view,
-                    ),
-                  ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    icon,
-                    size: 32,
-                  ),
-                  Text(
-                    title,
-                    style: const TextStyle(fontSize: 32),
-                  ),
-                ],
-              )),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => view,
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  icon,
+                  size: menuIconSize,
+                ),
+                Text(
+                  title,
+                  style: menuButtonStyle,
+                ),
+              ],
+            ),
+          ),
         ),
       );
 
@@ -49,11 +52,7 @@ class HomeView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("./assets/img/wind-rose.png"),
-            const Text(
-              "NORTHWIND TRADERS",
-              style: TextStyle(fontSize: 24, color: Colors.lightBlue),
-            ),
+            const NorthWindLogo(),
             const Padding(padding: EdgeInsets.only(bottom: verticalPadding)),
             menuButton(
               context,
