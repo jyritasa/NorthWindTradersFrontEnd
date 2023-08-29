@@ -1,6 +1,8 @@
+import 'package:northwind/models/shared/model_class.dart';
+
 import 'product_model.dart';
 
-class OrderDetails {
+class OrderDetails extends Model {
   int? orderId;
   int? productId;
   double? unitPrice;
@@ -26,6 +28,7 @@ class OrderDetails {
         json['product'] != null ? Product.fromJson(json['product']) : null;
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (orderId != null) data['orderId'] = orderId;

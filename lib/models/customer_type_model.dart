@@ -1,4 +1,6 @@
-class CustomerTypes {
+import 'package:northwind/models/shared/model_class.dart';
+
+class CustomerTypes extends Model {
   String? customerTypeId;
   String? customerDesc;
   List<String>? customers;
@@ -11,6 +13,7 @@ class CustomerTypes {
     customers = json['customers'].cast<String>();
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['customerTypeId'] = customerTypeId;

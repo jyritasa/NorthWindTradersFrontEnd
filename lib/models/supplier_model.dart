@@ -1,6 +1,8 @@
+import 'package:northwind/models/shared/model_class.dart';
+
 import 'product_model.dart';
 
-class Supplier {
+class Supplier extends Model {
   int? supplierId;
   String? companyName;
   String? contactName;
@@ -51,6 +53,7 @@ class Supplier {
     }
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['supplierId'] = supplierId;

@@ -1,6 +1,7 @@
+import 'package:northwind/models/shared/model_class.dart';
 import 'package:northwind/models/territories_model.dart';
 
-class Region {
+class Region extends Model {
   int? regionId;
   String? regionDescription;
   List<Territories>? territories;
@@ -18,6 +19,7 @@ class Region {
     }
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['regionId'] = regionId;
